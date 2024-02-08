@@ -101,6 +101,10 @@ const (
 	// Enable more than one workload sharing flavors to preempt within a Cohort,
 	// as long as the preemption targets don't overlap.
 	MultiplePreemptions featuregate.Feature = "MultiplePreemptions"
+	// owner: @vicenteferrara
+	// kep: https://github.com/kubernetes-sigs/kueue/tree/3347afb5a8681f4fd2a5f3b1a5be8c5c0ebac488/keps/77-dynamically-sized-jobs
+	// alpha: v0.8
+	ResizableJobs featuregate.Feature = "ResizableJobs"
 )
 
 func init() {
@@ -124,6 +128,7 @@ var defaultFeatureGates = map[featuregate.Feature]featuregate.FeatureSpec{
 	LendingLimit:                    {Default: true, PreRelease: featuregate.Beta},
 	MultiKueueBatchJobWithManagedBy: {Default: false, PreRelease: featuregate.Alpha},
 	MultiplePreemptions:             {Default: true, PreRelease: featuregate.Beta},
+	ResizableJobs:                   {Default: false, PreRelease: featuregate.Alpha},
 }
 
 func SetFeatureGateDuringTest(tb testing.TB, f featuregate.Feature, value bool) {
