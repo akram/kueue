@@ -146,16 +146,17 @@ webhookService:
 
 # kueue-viz dashboard
 kueueViz:
+  namespace: kueue-system
   enabled: true
   replicaCount: 1
   backend:
-    image: us-central1-docker.pkg.dev/k8s-staging-images/kueue/kueue-viz-backend:latest
+    image: us-central1-docker.pkg.dev/k8s-staging-images/kueue/kueue-viz-backend:main-latest
     ingress:
       enabled: true
       host: backend.kueue-viz.local
 
   frontend:
-    image: us-central1-docker.pkg.dev/k8s-staging-images/kueue/kueue-viz-frontend:latest
+    image: us-central1-docker.pkg.dev/k8s-staging-images/kueue/kueue-viz-frontend:main-latest
     ingress:
       enabled: true
       host: frontend.kueue-viz.local

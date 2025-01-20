@@ -3,7 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: {{ include "kueue.fullname" . }}-kueue-viz-cert
-  namespace: '{{ .Release.Namespace }}'
+  namespace: {{ .Values.kueueViz.namespace }}
   labels:
     {{- include "kueue.labels" . | nindent 4 }}
 spec:
