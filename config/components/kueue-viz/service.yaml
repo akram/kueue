@@ -1,0 +1,28 @@
+---
+# Source: kueue/templates/kueue-viz/backend-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: kueue-viz-backend
+  namespace: kueue-viz
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: kueue-viz-backend
+---
+# Source: kueue/templates/kueue-viz/frontend-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: kueue-viz-frontend
+  namespace: kueue-viz
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: kueue-viz-frontend

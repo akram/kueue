@@ -1,0 +1,52 @@
+---
+# Source: kueue/templates/kueue-viz/backend-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kueue-backend-ingress
+  namespace: 'kueue-viz'
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+    - hosts:
+        - backend.kueue-viz.local
+      secretName: kueue-kueue-viz-tls-secret
+  rules:
+    - host: backend.kueue-viz.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kueue-viz-backend
+                port:
+                  number: 8080
+---
+# Source: kueue/templates/kueue-viz/frontend-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kueue-frontend-ingress
+  namespace: kueue-viz
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+    - hosts:
+        - frontend.kueue-viz.local
+      secretName: kueue-kueue-viz-tls-secret
+  rules:
+    - host: frontend.kueue-viz.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kueue-viz-frontend
+                port:
+                  number: 8080
