@@ -347,13 +347,13 @@ kueueviz-image-build:
 		--build-arg BUILDER_IMAGE=$(BUILDER_IMAGE) \
 		--build-arg CGO_ENABLED=$(CGO_ENABLED) \
 		$(PUSH) \
-		-f ./cmd/experimental/kueueviz/backend/Dockerfile ./cmd/experimental/kueueviz/backend; \
+		-f ./cmd/kueueviz/backend/Dockerfile ./cmd/kueueviz/backend; \
 	$(IMAGE_BUILD_CMD) \
 		-t $(IMAGE_REGISTRY)/kueueviz-frontend:$(GIT_TAG) \
 		-t $(IMAGE_REGISTRY)/kueueviz-frontend:$(RELEASE_BRANCH) \
 		--platform=$(VIZ_PLATFORMS) \
 		$(PUSH) \
-		-f ./cmd/experimental/kueueviz/frontend/Dockerfile ./cmd/experimental/kueueviz/frontend; \
+		-f ./cmd/kueueviz/frontend/Dockerfile ./cmd/kueueviz/frontend; \
 
 .PHONY: kueueviz-image-push
 kueueviz-image-push: PUSH=--push
